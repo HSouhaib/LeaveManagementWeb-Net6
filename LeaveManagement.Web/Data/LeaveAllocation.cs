@@ -7,5 +7,7 @@ public class LeaveAllocation  : BaseEntity
 
    public string EmployeeId { get; set; }
    public int NumbersOfDays { get; set; }
-  
+
+   public int Period { get; set; }
+
 }

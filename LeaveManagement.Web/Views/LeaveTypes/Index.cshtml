@@ -3,12 +3,11 @@
 @{
     ViewData["Title"] = "Index";
 }
-
 <p>
-    <a class="btn btn-success" asp-action="Create"> <i class="fas fa-plus"></i> Create New</a>
+    <a class="btn btn-outline-success" asp-action="Create"> <i class="fas fa-plus"></i> Create New</a>
 </p>
 
-<table id="table" class="table table-striped table-bordered dt-responsive nowrap ">
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -31,6 +30,7 @@
                     @Html.DisplayFor(modelItem => item.DefaultDays)
                 </td>
                 <td>
+                    <button data-id="@item.Id" class="btn btn-outline-primary allocateBtn" type="button">@*<i class="fas fa-trash-alt"></i>*@Allocate Leave</button>
                     <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit "></i></a>
                     <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i></a>
                     @*<a asp-action="Delete" class="btn btn-danger " asp-route-id="@item.Id">Delete</a>*@
@@ -45,15 +45,17 @@
 <form id="deleteForm" asp-action="Delete">
     <input type="hidden" id="leaveTypeId" name="Id" />
 </form>
+<form id="allocationForm" asp-action="AllocateLeave">
+    <input type="hidden" id="AllocationLeaveTypeId" name="Id" />
+</form>
 
 @section Scripts {
     <script>
-        $(function() {
-            $('#table').DataTable();
+        $(function() {  
             $('.deleteBtn').click(function(e) {
                 swal({
                     title: "Are you sure?",
-                    text: "Are you sure you want to delete this record",
+                    text: "Are you sure you want to delete this record?",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true
@@ -63,6 +65,23 @@
                         var id = btn.data('id');
                         $('#leaveTypeId').val(id);
                         $('#deleteForm').submit();
+                    }
+                });
+            });
+             $('#table').DataTable();
+            $('.allocateBtn').click(function(e) {
+                swal({
+                    title: "Are you sure?",
+                    text: "Are you sure you want to allocate this leave to all employees?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true
+                }).then((confirm) => {
+                    if (confirm) {
+                        var btn = $(this);
+                        var id = btn.data('id');
+                        $('#AllocationLeaveTypeId').val(id);
+                        $('#allocationForm').submit();
                     }
                 });
             });
