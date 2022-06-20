@@ -1,0 +1,117 @@
+﻿@model EmployeeLeaveRequestVM
+
+@{
+    ViewData["Title"] = "MyLeave";
+}
+
+<br />
+<br />
+<br />
+<br />
+<div class="card">
+    <div class="card-header">
+        <h4 class="text-center">Leave Allocations</h4>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col">Leave Name</div>
+                <div class="col">Original Allocation</div>
+                <div class="col">Current Allocation</div>
+
+            </div>
+        </li>
+        @foreach (var allocation in Model.LeaveAllocations)
+        {
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col"><h6>@allocation.LeaveType.Name</h6> </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-outline-info text-black">
+                            Allocated Days <span class="badge bg-info text-black">@allocation.LeaveType.DefaultDays</span>
+                        </button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-outline-info text-black">
+                            Remaining Days <span class="badge bg-info text-black">@allocation.NumbersOfDays</span>
+                        </button>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+
+<hr />
+<br />
+<br />
+<br />
+<br />
+
+
+
+<table class="table table-striped">
+    <h4 class="text-center">Current Requests</h4>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveRequests[0].StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveRequests[0].EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveRequests[0].LeaveType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveRequests[0].DateRequested)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaveRequests[0].Approved)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.LeaveRequests)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LeaveType.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateRequested)
+                </td>
+                <td>
+                    @if (item.Cancelled)
+                    {
+                        <span class="badge bg-secondary text-black">Cancelled</span>
+                    }
+                    else if (item.Approved is null)
+                    {
+                        <span class="badge bg-warning text-black">Pending</span>
+                    }
+                    else if (item.Approved.Value)
+                    {
+                        <span class="badge bg-success text-black ">Approved</span>
+                    }
+                    else if (!item.Approved.Value)
+                    {
+                        <span class="badge bg-danger text-black">Rejected</span>
+                    }
+                
+                </td>
+                <td>
+                    <a asp-action="Cancel" class="btn btn-outline-danger btn-sm" asp-route-id="@item.Id">Cancel Request</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

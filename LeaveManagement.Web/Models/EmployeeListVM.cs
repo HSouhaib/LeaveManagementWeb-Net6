@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
 namespace LeaveManagement.Web.Models;
 public class EmployeeListVM
 {
@@ -16,7 +15,7 @@ public class EmployeeListVM
    [DataType(DataType.Date)]
    public DateTime DateJoined { get; set; }
 
-
    [Display(Name = "Email Address")]
    public string Email { get; set; }
+
 }

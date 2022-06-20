@@ -4,6 +4,7 @@ using LeaveManagement.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LeaveManagement.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220618173105_UpdatedRequestedComment")]
+    partial class UpdatedRequestedComment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,7 +108,7 @@ namespace LeaveManagement.Web.Data.Migrations
                         {
                             Id = "654dae5c-6726-4c62-8f4a-70933c2951a6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "746af416-72a9-4e7c-bcc9-73bf370704e5",
+                            ConcurrencyStamp = "d93db165-82d7-4cf2-9959-50993fad8e18",
                             DateJoined = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@localhot.com",
@@ -116,9 +118,9 @@ namespace LeaveManagement.Web.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOFonqFkjWcT6p51Fx1CBHmmtYkVGRMUtXIkVuFq4arhly/vh4OpxJwqSe6KvwQCrw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMCsQq60Ggl5w/2+cicYOTXUTv3IkU1zVbvAIRT9VHfbgUt//nBYnu3/v11yIxW6pg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "807cfcea-e2d7-4e2f-ac0c-7b9e7798bebc",
+                            SecurityStamp = "8426a458-08ae-4b96-8174-8ef2b9c542bd",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhot.com"
                         });
@@ -260,14 +262,14 @@ namespace LeaveManagement.Web.Data.Migrations
                         new
                         {
                             Id = "8e4a4a43-9f07-4124-957d-c60bb846e7bf",
-                            ConcurrencyStamp = "a29891d4-83ef-443b-9e05-9c5247c3dcc2",
+                            ConcurrencyStamp = "76af3237-d48e-496d-bd2a-71db67992d93",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "8e4a43a43-9f07-4124-957cbbd-c60bb846e7abf",
-                            ConcurrencyStamp = "b2ba56f7-5023-49ec-b23b-6874e7ebb688",
+                            ConcurrencyStamp = "644aeb49-d85c-4525-ab50-25a3eb923443",
                             Name = "User",
                             NormalizedName = "USER"
                         });
